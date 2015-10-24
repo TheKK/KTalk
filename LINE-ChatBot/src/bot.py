@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 try:
+    from states import States
     from constants import *
     from command import * 
     from settings import *
@@ -8,6 +9,7 @@ try:
     import urllib2, urllib, json
     import re, sys, os, argparse
     from threading import Thread
+    import time
     from time import sleep
     from random import randint, randrange, uniform
     from goslate import Goslate
@@ -157,13 +159,27 @@ class LineAutoBot(object):
             print "Something went wrong!", err
         return total, msg
 
+def execute_routine(data, obj):
+    states = States();
+    states.setLastNewsUpdateTime(time.time())
+    # 1. Find if there're new news
+    # 2. If so, send it. Otherwise, don't
+    data.sendMessage("""
+        Wat do u want?
+        1. Teemis picher
+        2. Teemis song
+        3. Just want say helllo to teemis
+    """)
+    data.sendMessage('https://youtu.be/-i7Hj1fAYN4')
+
 # Execute it !
 def execute_bot(data, obj):
     try:
-        n1 = 2
+        n1 = 1
         cmd = Command()
         myprofile = str(client.profile)
         messages1 = data.getRecentMessages(count=n1)
+        execute_routine(data, obj)
         for x in range(0, n1):
             last_message = str(messages1[x])
             regex = re.search('msg="(.+?)"', last_message).group(1)

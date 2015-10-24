@@ -31,13 +31,15 @@ class Command:
             "!botmeme",
             "!botyoutubemp3",
             "!botyoutubedl",
-            "!bothelp",
 	    "!hoi",
+	    "!news",
+	    "!temmi",
+            "!bothelp",
             "!botkick" # this only works for the instruction of the boss.
         ]
 
         self.help_info = " \
-            \n [+] Bot Help & About [+] \n \
+            \n[+] Bot Help & About [+] \n \
             \n[~] List Of Commands: \n \
             \n[1]. !botreply <pesan> \
             \n[2]. !botkatamutiara \
@@ -46,8 +48,9 @@ class Command:
             \n[5]. !botmeme \
             \n[6]. !botyoutubemp3 <url youtube> \
             \n[7]. !botyoutubedl <url youtube> \
-            \n[8]. !bothelp \n \
-            \n[9]. !hoi \n \
+            \n[8]. !hoi \n \
+            \n[9]. !news \n \
+            \n[10]. !bothelp \n \
             \n[x] Coded by snoww0lf with Love & Peace <3. [x]"
 
     def bot_cmd(self, selected):

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import requests
 
 url = 'https://eospu.esunbank.com.tw/esun/bank/hackathon/news?client_id=01940f38-4b11-4d55-b6ae-41af2145b699'

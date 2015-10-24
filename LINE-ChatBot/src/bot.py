@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 try:
-    from states import States
+    from src.news import *
     from constants import *
     from command import * 
     from settings import *
@@ -9,7 +9,6 @@ try:
     import urllib2, urllib, json
     import re, sys, os, argparse
     from threading import Thread
-    import time
     from time import sleep
     from random import randint, randrange, uniform
     from goslate import Goslate
@@ -59,6 +58,15 @@ class LineAutoBot(object):
         else:
             send = self.group.sendMessage("<bot-translate> Gak ngerti!")
 
+    def all_news(self):
+        news = get_all_news()
+        news_titles = 'All news avaliable:'
+        i = 0
+        for new in news['news']:
+            news_titles += ('[%d]' + new['title'] + '\n') % i
+            i += 1
+        self.group.sendMessage(news_titles)
+
     # Running under Linux OS/Windows OS/Etc.
     def meme(self):
         self.__consts.WANCAK_RAND.close()
@@ -91,15 +99,15 @@ class LineAutoBot(object):
                 sys.exit()
             else:
                 url = "%s%s" % (self.__consts.YOUTUBE_CONVERTER, link)
-                #header = 'Referer: http://youtubeinmp3.com/api/'
-                #urlreq = urllib2.Request(url, headers=header)
-                urlop = urllib2.urlopen(url)
+                header = 'Referer: http://youtubeinmp3.com/api/'
+                urlrop = urllib2.Request(url, headers=header)
+                # urlop = urllib2.urlopen(url)
                 obj = json.loads(urlop.read())
                 msg = "\
                 \n [+] Judul: %s \
                 \n[+] Link Download Mp3: %s" % (obj['title'], obj['link'])
                 self.group.sendMessage(msg)
-        except Exception: 
+        except Exception as e: 
             self.group.sendMessage("[+] Sory bro!, URL youtube tidak valid! [+]")
 
     # download youtube video with the best quality.
@@ -160,17 +168,10 @@ class LineAutoBot(object):
         return total, msg
 
 def execute_routine(data, obj):
-    states = States();
-    states.setLastNewsUpdateTime(time.time())
-    # 1. Find if there're new news
-    # 2. If so, send it. Otherwise, don't
-    data.sendMessage("""
-        Wat do u want?
-        1. Teemis picher
-        2. Teemis song
-        3. Just want say helllo to teemis
-    """)
-    data.sendMessage('https://youtu.be/-i7Hj1fAYN4')
+    # 1. check if there's any new message
+    # 2. do what you should do
+    # 3. sleep
+    print("jdskfl")
 
 # Execute it !
 def execute_bot(data, obj):
@@ -179,9 +180,9 @@ def execute_bot(data, obj):
         cmd = Command()
         myprofile = str(client.profile)
         messages1 = data.getRecentMessages(count=n1)
-        execute_routine(data, obj)
         for x in range(0, n1):
             last_message = str(messages1[x])
+            print(last_message)
             regex = re.search('msg="(.+?)"', last_message).group(1)
             regex_name = re.search('sender=<LineContact (.+?)>', last_message).group(1)
             quote = urllib.quote_plus(regex)
@@ -211,11 +212,15 @@ def execute_bot(data, obj):
                 obj.youtubemp3(regex[15:], myprofile, str(messages1[0]))
             elif cmd.bot_cmd(6) in last_message:
                 obj.youtube_download(regex[14:], myprofile, str(messages1[0]))
-            elif cmd.bot_cmd(7) in last_message:
+            elif cmd.bot_cmd(7) in last_message: # !hoi
+                data.sendImage("/home/mozilla-tpe/Pictures/huhu/1445330117855.gif")
+            elif cmd.bot_cmd(8) in last_message: # !news
+                obj.all_news()
+            elif cmd.bot_cmd(9) in last_message: # !temmi
+                obj.youtubemp3('https://www.youtube.com/watch?v=-i7Hj1fAYN4', myprofile, 'le tammi to colleeg')
+            elif cmd.bot_cmd(10) in last_message: # !bothelp
                 data.sendMessage(cmd.help())
-            elif cmd.bot_cmd(8) in last_message:
-                data.sendImage('/home/mozilla-tpe/Pictures/huhu/1445330117855.gif')
-            elif cmd.bot_cmd(9) in last_message:
+            elif cmd.bot_cmd(11) in last_message:
                 if cmd.bos_name() in regex_name:
                     data.sendMessage("<bot> Bye!")
                     client.leaveGroup(data)

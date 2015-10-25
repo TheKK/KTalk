@@ -183,7 +183,7 @@ def execute_bot(data, obj):
         print(messages1)
 
         # Dude! Don't talk yourself!
-        if data.id == 'uc395f6d96f2cee32c1aca11d16801e30':
+        if messages1[0].sender.id == 'uc395f6d96f2cee32c1aca11d16801e30':
             print("bye, don't talk to yourself")
             return
 

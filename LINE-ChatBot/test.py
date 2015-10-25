@@ -3,9 +3,9 @@
 # -*- coding: utf-8 -*-
 
 import json
+from pprint import pprint
 from src.news import *
+from src.atms import *
 
-new = get_lastest_news()
-
-with open('haha', mode='wb') as fp:
-	fp.write(json.dumps(new).encode('utf-8'))
+a = Atm()
+a.show_atm_direction()

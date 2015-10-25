@@ -6,7 +6,7 @@ from settings import *
 
 class Command:
     def __init__(self, data):
-	self.data = data
+        self.data = data
         self.__boss_name = Settings().HERE_IAM_YOUR_BOSS
 
         self.jawab = \
@@ -39,9 +39,9 @@ class Command:
 			self.send_tommi_pic
 		],
 		'random': [
-			# '喵喵喵喵',
-			# '偷偷告訴你，我的名字叫做...',
-			# '最近迷上一隻要上大學的貓咪呢！',
+			'喵喵喵喵',
+			'偷偷告訴你，我的名字叫做...',
+			'最近迷上一隻要上大學的貓咪呢！',
 			self.play_a_game
 		],
 		'wrong_bank': [
@@ -75,9 +75,9 @@ class Command:
             "!botmeme",
             "!botyoutubemp3",
             "!botyoutubedl",
-	    "!hoi",
-	    "!news",
-	    "!temmi",
+            "!hoi",
+            "!news",
+            "!temmi",
             "!bothelp",
             "!botkick" # this only works for the instruction of the boss.
         ]
@@ -97,16 +97,19 @@ class Command:
             \n[10]. !bothelp \n \
             \n[x] Coded by snoww0lf with Love & Peace <3. [x]"
 
+    def show_atm_direction(self):
+        a = Atm()
+        result = a.show_atm_direction()
+        reply = '%s, %s' % (result['time'], result['address'])
+        self.data.sendMessage(reply)
+
     def play_a_game(self):
-        reply = """
-                先別提那個了，你有聽過 flappy cat 嗎？
-                http://kindersung.github.io/flappy/'
-        """
-	self.data.sendMessage(reply)
+        reply = '先別提那個了，你有聽過 Flappy Cat 嗎？ http://kindersung.github.io/flappy/'
+        self.data.sendMessage(reply)
 
     def send_tommi_pic(self):
-	self.data.sendMessage('HOI!')
-	self.data.sendImage('./temmi.gif')
+        self.data.sendMessage('HOI!')
+        self.data.sendImage('./temmi.gif')
 
     def get_news(self):
         news = get_all_news()
@@ -118,27 +121,27 @@ class Command:
         return news_msg
 
     def do_bot_reply(self, lineMsg):
-	msg = lineMsg.text.lower()
-	group = 'random'
-    	replys = self.replyGroup['random']
+        msg = lineMsg.text.lower()
+        group = 'random'
+        replys = self.replyGroup[group]
     
-    	for cmd in self.cmd:
-    		for keyword in cmd['keywords']:
-    			if keyword in msg:
-				group = cmd['group']
-				replys = self.replyGroup[group]
-				break
+        for cmd in self.cmd:
+            for keyword in cmd['keywords']:
+                if keyword in msg:
+                    group = cmd['group']
+                    replys = self.replyGroup[group]
+                    break
     
-    	reply = replys[randint(0, len(replys) - 1)]
+        reply = replys[randint(0, len(replys) - 1)]
 
-	print('[MESSAGE] %s' % msg)
-	print('[GROUP]: %s' % group)
-	print('[REPLY] %s' % reply)
+        print('[MESSAGE] %s' % msg)
+        print('[GROUP]: %s' % group)
+        print('[REPLY] %s' % reply)
 
-	if hasattr(reply, '__call__'):
-		reply()
-	else:
-		self.data.sendMessage(reply)
+        if hasattr(reply, '__call__'):
+                reply()
+        else:
+                self.data.sendMessage(reply)
     
     def bot_cmd(self, selected):
         return self.commands[selected]

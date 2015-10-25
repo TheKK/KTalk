@@ -16,11 +16,8 @@ class Atm:
     def get_all_atms(self):
         return self.atms.json()
 
-    def show_atm_direction(self):
+    def show_atm_direction(self, latitude, longitude):
         allAtms = self.atms.json()['atms']
-        latitude = 24.786576
-	longitude = 120.996787
-	addr = '300, Taiwan, Hsinchu City, East District \xe5\x85\x89\xe6\x98\x8e\xe9\x87\x8c'
 	url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=%f,%f&destinations=' % (latitude, longitude)
 
 	best_dest_index = 0
@@ -49,11 +46,7 @@ class Atm:
 				best_dest_time = time
 				best_dest_addr = dest_addrs
 
-	# pprint(elements[best_dest_index])
-	# pprint(dest_addrs[best_dest_index])
-	# pprint(dists)
-	# pprint(allAtms[0])
 	print(best_dest_addr)
 	print(best_dest_time)
 
-	return {"address": best_dest_addr, "time": best_dest_time}
+	return {"address": best_dest_addr[0], "time": best_dest_time}

@@ -180,6 +180,12 @@ def execute_bot(data, obj):
         cmd = Command(data)
         myprofile = str(client.profile)
         messages1 = data.getRecentMessages(count=n1)
+        print(messages1)
+
+        # Dude! Don't talk yourself!
+        if data.id == 'uc395f6d96f2cee32c1aca11d16801e30':
+            print("bye, don't talk to yourself")
+            return
 
         # Bot chat
         cmd.do_bot_reply(messages1[0])

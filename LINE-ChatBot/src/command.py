@@ -34,7 +34,7 @@ class Command:
                 self.get_news
             ],
             'atm_location': [
-                '這個功能還在施工中，請耐心等待噢，喵'
+                self.show_atm_direction
             ],
             'temmi': [
                 self.send_tommi_pic

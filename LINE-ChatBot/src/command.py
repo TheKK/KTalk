@@ -124,11 +124,11 @@ class Command:
         self.data.sendMessage(news_msg)
 
     def do_bot_reply(self, lineMsg):
-        msg = lineMsg.text.lower()
-        group = 'random'
-        replys = self.replyGroup[group]
-
-        if lineMsg.location:
+        if lineMsg.text:
+            msg = lineMsg.text.lower()
+            group = 'random'
+            replys = self.replyGroup[group]
+        elif lineMsg.location:
             self.show_atm_direction(lineMsg)
             return
 

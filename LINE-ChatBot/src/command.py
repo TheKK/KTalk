@@ -43,6 +43,16 @@ class Command:
 			# '偷偷告訴你，我的名字叫做...',
 			# '最近迷上一隻要上大學的貓咪呢！',
 			self.play_a_game
+		],
+		'wrong_bank': [
+			'哦，你是說那棵樹嗎?'
+		],
+		'game': [
+			'你知道我的好朋友綠呼呼最近代言了一款遊戲嗎?\nhttp://kindersung.github.io/flappy/',
+			'我想你可以試試看這個...\nhttp://kindersung.github.io/flappy/'
+		],
+		'green': [
+			'你說綠呼呼喔? 不曉得你有沒有玩過他最近代言的遊戲...\nhttp://kindersung.github.io/flappy/'
 		]
 	}
 
@@ -50,6 +60,9 @@ class Command:
 			{'keywords': ['玉山'], 'group': '玉山'},
 			{'keywords': ['消息', '訊息', '新聞'], 'group': 'news'},
 			{'keywords': ['atm', '提款機'], 'group': 'atm_location'},
+			{'keywords': ['國泰', '世華'], 'group': 'wrong_bank'},
+			{'keywords': ['無聊', '玩'], 'group': 'game'},
+			{'keywords': ['綠呼呼'], 'group': 'green'},
 			{'keywords': ['hoi', 'temmi'], 'group': 'temmi'}
 	]
 

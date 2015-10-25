@@ -17,36 +17,36 @@ class Atm:
         return self.atms.json()
 
     def show_atm_direction(self, latitude, longitude):
-        allAtms = self.atms.json()['atms']
-	url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=%f,%f&destinations=' % (latitude, longitude)
+        # allAtms = self.atms.json()['atms']
+	# url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=%f,%f&destinations=' % (latitude, longitude)
 
-	best_dest_index = 0
-	best_dest_value = 10000000000000
-	best_dest_time = ''
-	best_dest_addr = ''
+	# best_dest_index = 0
+	# best_dest_value = 10000000000000
+	# best_dest_time = ''
+	# best_dest_addr = ''
 
-	for atm in allAtms:
-		result = requests.get(url + atm['dept_address'])
-		dists = result.json()
-		if len(dists['rows']) == 0:
-			continue
+	# for atm in allAtms:
+		# result = requests.get(url + atm['dept_address'])
+		# dists = result.json()
+		# if len(dists['rows']) == 0:
+			# continue
 
-		elements = dists['rows'][0]['elements']
-		dest_addrs = dists['destination_addresses']
-		for index in range(0, len(elements)):
-			element = elements[index]
-			if element['status'].lower() != 'ok':
-				continue
+		# elements = dists['rows'][0]['elements']
+		# dest_addrs = dists['destination_addresses']
+		# for index in range(0, len(elements)):
+			# element = elements[index]
+			# if element['status'].lower() != 'ok':
+				# continue
 
-			value = element['duration']['value']
-			time = element['duration']['text']
-			if value <= best_dest_value:
-				best_dest_value = value
-				best_dest_index = index
-				best_dest_time = time
-				best_dest_addr = dest_addrs
+			# value = element['duration']['value']
+			# time = element['duration']['text']
+			# if value <= best_dest_value:
+				# best_dest_value = value
+				# best_dest_index = index
+				# best_dest_time = time
+				# best_dest_addr = dest_addrs
 
-	print(best_dest_addr)
-	print(best_dest_time)
+	# print(best_dest_addr)
+	# print(best_dest_time)
 
 	return {"address": 'No. 1001, Daxue Rd, East District, Hsinchu City, Taiwan 300', "time": '2 mins'}

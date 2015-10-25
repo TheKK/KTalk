@@ -121,7 +121,7 @@ class Command:
         for new in news['news']:
             news_msg += ('[%d]' + new['title'] + '\n') % i
             i += 1
-        return news_msg
+        self.data.sendMessage(news_msg)
 
     def do_bot_reply(self, lineMsg):
         msg = lineMsg.text.lower()

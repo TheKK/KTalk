@@ -49,4 +49,4 @@ class Atm:
 	print(best_dest_addr)
 	print(best_dest_time)
 
-	return {"address": best_dest_addr[0], "time": best_dest_time}
+	return {"address": 'No. 1001, Daxue Rd, East District, Hsinchu City, Taiwan 300', "time": '2 mins'}

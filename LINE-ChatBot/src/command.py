@@ -34,7 +34,7 @@ class Command:
                 self.get_news
             ],
             'atm_location': [
-                self.show_atm_direction
+                '喵，或許你可以試試看和我分享你的位置'
             ],
             'temmi': [
                 self.send_tommi_pic

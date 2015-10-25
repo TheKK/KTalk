@@ -11,5 +11,5 @@ from src.branches import *
 a = Atm()
 a.show_atm_direction()
 
-b = Branch()
-b.show_branch_direction()
+# b = Branch()
+# b.show_branch_direction()

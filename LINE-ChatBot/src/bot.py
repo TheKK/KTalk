@@ -177,12 +177,15 @@ def execute_routine(data, obj):
 def execute_bot(data, obj):
     try:
         n1 = 1
-        cmd = Command()
+        cmd = Command(data)
         myprofile = str(client.profile)
         messages1 = data.getRecentMessages(count=n1)
+
+        # Bot chat
+        cmd.do_bot_reply(messages1[0])
+
         for x in range(0, n1):
             last_message = str(messages1[x])
-            print(last_message)
             regex = re.search('msg="(.+?)"', last_message).group(1)
             regex_name = re.search('sender=<LineContact (.+?)>', last_message).group(1)
             quote = urllib.quote_plus(regex)

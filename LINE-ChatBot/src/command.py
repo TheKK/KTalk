@@ -39,9 +39,10 @@ class Command:
 			self.send_tommi_pic
 		],
 		'random': [
-			'喵喵喵喵',
-			'偷偷告訴你，我的名字叫做...',
-			'最近迷上一隻要上大學的貓咪呢！'
+			# '喵喵喵喵',
+			# '偷偷告訴你，我的名字叫做...',
+			# '最近迷上一隻要上大學的貓咪呢！',
+			self.play_a_game
 		]
 	}
 
@@ -82,6 +83,13 @@ class Command:
             \n[9]. !news \n \
             \n[10]. !bothelp \n \
             \n[x] Coded by snoww0lf with Love & Peace <3. [x]"
+
+    def play_a_game(self):
+        reply = """
+                先別提那個了，你有聽過 flappy cat 嗎？
+                http://kindersung.github.io/flappy/'
+        """
+	self.data.sendMessage(reply)
 
     def send_tommi_pic(self):
 	self.data.sendMessage('HOI!')
